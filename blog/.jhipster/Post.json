@@ -1,0 +1,42 @@
+{
+  "applications": ["gateway", "blog"],
+  "changelogDate": "20230811175529",
+  "clientRootFolder": "blog",
+  "databaseType": "sql",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "post",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "content",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "blog",
+  "name": "Post",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "tag",
+      "otherEntityRelationshipName": "post",
+      "relationshipName": "tag",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

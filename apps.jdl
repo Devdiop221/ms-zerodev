@@ -1,0 +1,83 @@
+
+application {
+  config {
+    baseName gateway,
+    applicationType gateway,
+    packageName com.abdallah.developer.gateway,
+    authenticationType oauth2,
+    prodDatabaseType postgresql,
+    serviceDiscoveryType eureka,
+    testFrameworks [protractor]
+  }
+  entities Blog, Post, Tag, Product
+}
+
+
+application {
+  config {
+    baseName blog,
+    applicationType microservice,
+    packageName com.abdallah.developer.blog,
+    authenticationType oauth2,
+    prodDatabaseType postgresql,
+    serverPort 8081,
+    serviceDiscoveryType eureka
+  }
+  entities Blog, Post, Tag
+}
+
+
+
+application {
+  config {
+    baseName store,
+    applicationType microservice,
+    packageName com.abdallah.developer.store,
+    authenticationType oauth2,
+    databaseType mongodb,
+    devDatabaseType mongodb,
+    prodDatabaseType mongodb,
+    enableHibernateCache false,
+    serverPort 8082,
+    serviceDiscoveryType eureka
+  }
+  entities Product
+}
+
+entity Product{
+	title String required,
+    price BigDecimal required,
+    image ImageBlob
+}
+
+entity Post{
+	title String required,
+    content TextBlob required,
+    date Instant required
+}
+
+entity Blog{
+	name String required,
+    handle String required
+}
+
+entity Tag{
+ name String required
+}
+
+entity User{
+
+}
+
+relationship ManyToOne {
+  Blog{post} to Post
+}
+
+relationship OneToMany {
+  Tag{post} to Post
+}
+
+relationship ManyToOne{
+	User{blog} to Blog
+}
+    
